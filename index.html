@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Katie's Healing Retreat Guide 🌿</title>
+<title>Healing Retreat Guide — Cancer Survivors Worldwide</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Georgia', serif;
+  font-family: Georgia, serif;
   background: #fdf6ee;
   color: #1a1a1a;
   min-height: 100vh;
@@ -16,9 +16,9 @@ body {
 
 /* ── HEADER ── */
 header {
-  background: linear-gradient(135deg, #7b2d5e 0%, #1a6b7c 60%, #0f4a5a 100%);
+  background: linear-gradient(135deg, #1a4a5e 0%, #2d7a6b 60%, #1a5a4a 100%);
   color: white;
-  padding: 3rem 2rem 2.5rem;
+  padding: 2.8rem 2rem 2.4rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -29,47 +29,81 @@ header::before {
   background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   pointer-events: none;
 }
-.header-tag {
-  display: inline-block;
-  background: rgba(255,255,255,0.18);
-  border: 1px solid rgba(255,255,255,0.35);
-  border-radius: 30px;
-  padding: 5px 18px;
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  font-family: Arial, sans-serif;
-}
 header h1 {
   font-size: 2.4rem;
   font-weight: normal;
   line-height: 1.25;
   margin-bottom: 0.7rem;
   text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  position: relative;
 }
 header h1 em {
   font-style: italic;
-  color: #f9d4b0;
+  color: #a8e6d8;
 }
 header p.subtitle {
   font-size: 1.05rem;
   color: rgba(255,255,255,0.88);
   max-width: 580px;
-  margin: 0 auto 1.2rem;
+  margin: 0 auto 1.6rem;
   line-height: 1.7;
   font-family: Arial, sans-serif;
+  position: relative;
 }
-.header-quote {
-  display: inline-block;
+
+/* ── QUOTE CAROUSEL ── */
+.quote-carousel {
+  position: relative;
+  border-top: 1px solid rgba(255,255,255,0.22);
+  padding-top: 1.3rem;
+  margin-top: 0.2rem;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 72px;
+}
+.quote-slide {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.9s ease-in-out;
+  pointer-events: none;
+}
+.quote-slide.active {
+  opacity: 1;
+  position: relative;
+  pointer-events: auto;
+}
+.quote-text {
   font-style: italic;
-  font-size: 1rem;
-  color: #f9d4b0;
-  border-top: 1px solid rgba(255,255,255,0.25);
-  padding-top: 1rem;
-  margin-top: 0.4rem;
-  max-width: 460px;
+  font-size: 1.05rem;
+  color: #d4f0e8;
+  line-height: 1.6;
+  margin-bottom: 0.4rem;
 }
+.quote-attr {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.65);
+  font-family: Arial, sans-serif;
+  letter-spacing: 0.03em;
+}
+.quote-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 1.1rem;
+  position: relative;
+}
+.qdot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: background 0.3s;
+}
+.qdot.active { background: rgba(255,255,255,0.9); }
 
 /* ── FILTER BAR ── */
 .filter-wrap {
@@ -107,7 +141,7 @@ header p.subtitle {
 }
 .btn:hover { transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.12); }
 .btn.active { color: #fff; transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.18); }
-.btn-all.active    { background: #7b2d5e; border-color: #7b2d5e; }
+.btn-all.active    { background: #1a4a5e; border-color: #1a4a5e; }
 .btn-asia.active   { background: #e8520a; border-color: #e8520a; }
 .btn-europe.active { background: #1a56c4; border-color: #1a56c4; }
 .btn-na.active     { background: #158a52; border-color: #158a52; }
@@ -122,13 +156,6 @@ header p.subtitle {
   color: #7a6a5a;
   font-family: Arial, sans-serif;
 }
-.no-results {
-  text-align: center;
-  padding: 4rem 2rem;
-  font-family: Arial, sans-serif;
-  color: #888;
-  font-size: 1rem;
-}
 
 /* ── GRID ── */
 .grid {
@@ -136,6 +163,14 @@ header p.subtitle {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 24px;
   padding: 1.2rem 2rem 4rem;
+}
+.no-results {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-family: Arial, sans-serif;
+  color: #888;
+  font-size: 1rem;
+  grid-column: 1 / -1;
 }
 
 /* ── CARD ── */
@@ -153,8 +188,6 @@ header p.subtitle {
   box-shadow: 0 8px 32px rgba(0,0,0,0.15);
   transform: translateY(-3px);
 }
-
-/* Photo area */
 .card-img-wrap {
   position: relative;
   height: 200px;
@@ -162,8 +195,7 @@ header p.subtitle {
   flex-shrink: 0;
 }
 .card-img {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.4s ease;
@@ -171,23 +203,23 @@ header p.subtitle {
 .card:hover .card-img { transform: scale(1.04); }
 .card-img-fallback {
   width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 3rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
 }
-
-/* Heart / favorite */
 .fav-btn {
   position: absolute;
   top: 12px; right: 12px;
   width: 38px; height: 38px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.92);
   border: none;
   cursor: pointer;
   font-size: 1.2rem;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  transition: transform 0.15s ease, background 0.15s;
+  transition: transform 0.15s ease;
   z-index: 2;
 }
 .fav-btn:hover { transform: scale(1.15); }
@@ -201,11 +233,7 @@ header p.subtitle {
   gap: 9px;
   flex: 1;
 }
-.card-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
+.card-badges { display: flex; flex-wrap: wrap; gap: 6px; }
 .badge {
   display: inline-block;
   padding: 3px 11px;
@@ -222,34 +250,11 @@ header p.subtitle {
 .badge-canada { background: #f2eaff; color: #5a1ea0; border: 1.5px solid #9060d0; }
 .badge-free   { background: #e0f7f5; color: #0a5a50; border: 1.5px solid #30b0a0; }
 .badge-cancer { background: #fff0f5; color: #9a0a40; border: 1.5px solid #e05080; }
-
-.card-name {
-  font-size: 1.15rem;
-  font-weight: bold;
-  color: #1a1a1a;
-  line-height: 1.3;
-  font-family: Arial, sans-serif;
-}
-.card-loc {
-  font-size: 0.82rem;
-  color: #888;
-  font-family: Arial, sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.card-loc::before { content: '📍'; font-size: 0.75rem; }
-.card-desc {
-  font-size: 0.92rem;
-  color: #333;
-  line-height: 1.65;
-}
-.card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin-top: 2px;
-}
+.card-name { font-size: 1.1rem; font-weight: bold; color: #1a1a1a; line-height: 1.3; font-family: Arial, sans-serif; }
+.card-loc  { font-size: 0.82rem; color: #888; font-family: Arial, sans-serif; }
+.card-loc::before { content: '📍 '; }
+.card-desc { font-size: 0.92rem; color: #333; line-height: 1.65; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
 .tag {
   display: inline-block;
   padding: 3px 10px;
@@ -260,16 +265,13 @@ header p.subtitle {
   border: 1px solid #e0d5c5;
   font-family: Arial, sans-serif;
 }
-.card-footer {
-  padding: 0 1.3rem 1.2rem;
-  margin-top: auto;
-}
+.card-footer { padding: 0 1.3rem 1.2rem; margin-top: auto; }
 .visit-btn {
   display: block;
   width: 100%;
   padding: 10px 0;
   border-radius: 30px;
-  background: linear-gradient(135deg, #7b2d5e, #1a6b7c);
+  background: linear-gradient(135deg, #1a4a5e, #2d7a6b);
   color: #fff;
   text-align: center;
   text-decoration: none;
@@ -281,18 +283,6 @@ header p.subtitle {
   box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 .visit-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-
-/* ── FOOTER ── */
-footer {
-  background: #2a1a12;
-  color: #b0a090;
-  padding: 2rem;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  font-size: 0.82rem;
-  line-height: 1.8;
-}
-footer strong { color: #f9d4b0; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 640px) {
@@ -306,402 +296,141 @@ footer strong { color: #f9d4b0; }
 <body>
 
 <header>
-  <div class="header-tag">✦ A Personal Gift for Katie ✦</div>
-  <h1>Your Guide to<br><em>Healing Retreats</em> Around the World</h1>
-  <p class="subtitle">
-    You've been through something enormous. This guide is a starting place
-    for the next chapter — rest, restoration, and the kind of deep healing that happens
-    when you finally get to just <em>breathe</em>.
-  </p>
-  <div class="header-quote">
-    "Healing is not a straight line. It's a journey worth taking beautifully."
+  <h1>Healing Retreats for <em>Cancer Survivors</em></h1>
+  <p class="subtitle">A curated worldwide guide for colorectal cancer survivors — post-treatment wellness programs, integrative healing resorts, and recovery retreats across Asia, Europe, and North America.</p>
+
+  <div class="quote-carousel" id="carousel">
+    <!-- quotes injected by JS -->
   </div>
+  <div class="quote-dots" id="qdots"></div>
 </header>
 
 <div class="filter-wrap">
-  <span class="filter-label">Show me:</span>
+  <span class="filter-label">Filter:</span>
   <button class="btn btn-all active"    onclick="sf('all',this)">🌍 All Retreats</button>
   <button class="btn btn-asia"          onclick="sf('asia',this)">🌴 Asia</button>
   <button class="btn btn-europe"        onclick="sf('europe',this)">🏔 Europe</button>
   <button class="btn btn-na"            onclick="sf('namerica',this)">🌲 North America</button>
   <button class="btn btn-cancer"        onclick="sf('cancer-only',this)">💗 Survivors Only</button>
   <button class="btn btn-free"          onclick="sf('free',this)">🎁 Free Programs</button>
-  <button class="btn btn-favs"          onclick="sf('favs',this)">❤️ My Favorites</button>
+  <button class="btn btn-favs"          onclick="sf('favs',this)">❤️ Saved</button>
 </div>
 
 <div class="count-bar" id="count-bar"></div>
 <div class="grid" id="grid"></div>
 
-<footer>
-  <strong>Made with love for Katie</strong> — a colorectal cancer survivor who deserves the world. 🌿<br>
-  Always verify program details and availability directly with the retreat before booking.<br>
-  Consult your oncologist or care team before traveling for post-treatment programs.<br><br>
-  <em>Images load when online. All retreat information and website links work anytime.</em>
-</footer>
-
 <script>
-/* ── GRADIENTS (fallback when image fails or offline) ── */
-var gradients = {
-  asia:    'linear-gradient(135deg, #e8520a 0%, #f5a623 100%)',
-  europe:  'linear-gradient(135deg, #1a56c4 0%, #0d8fa0 100%)',
-  usa:     'linear-gradient(135deg, #158a52 0%, #1abc9c 100%)',
-  canada:  'linear-gradient(135deg, #7c3aed 0%, #c4185e 100%)'
-};
-
-var retreats = [
-  {
-    id: 'kamalaya',
-    name: 'Kamalaya Koh Samui',
-    loc: 'Koh Samui, Thailand',
-    region: 'asia',
-    types: ['asia'],
-    desc: 'Award-winning integrative resort with a dedicated gut health program. Draws on naturopathy, Ayurveda, and Chinese medicine — one of the world\'s most respected post-illness retreats.',
-    tags: ['Gut health program','Naturopathy','Ayurveda','Emotional recovery','Integrative medicine'],
-    url: 'https://kamalaya.com',
-    img: 'https://images.unsplash.com/photo-1544161830-868028e4a5be?w=600&h=280&fit=crop',
-    icon: '🌴'
-  },
-  {
-    id: 'chivasom',
-    name: 'Chiva-Som',
-    loc: 'Hua Hin, Thailand',
-    region: 'asia',
-    types: ['asia'],
-    desc: 'One of the world\'s oldest and most-reviewed destination wellness resorts. Dedicated gut health program using probiotics, nutrition, abdominal massage, and colonics — directly relevant to colon and rectal recovery.',
-    tags: ['Dedicated gut health','Probiotic nutrition','Detox colonics','Tai Chi / yoga','Beachfront'],
-    url: 'https://chivasom.com',
-    img: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&h=280&fit=crop',
-    icon: '🌊'
-  },
-  {
-    id: 'rakxa',
-    name: 'RAKxa Integrative Wellness',
-    loc: 'Bangkok, Thailand',
-    region: 'asia',
-    types: ['asia'],
-    desc: 'Medical clinic meets holistic retreat. The 7- or 10-night Gut & Immunity program combines clinical colon hydrotherapy and lab testing with Ayurveda, acupuncture, and an anti-inflammatory diet.',
-    tags: ['Gut & immunity program','Lab diagnostics','Colon hydrotherapy','Microbiome support','Acupuncture'],
-    url: 'https://rakxa.com',
-    img: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&h=280&fit=crop',
-    icon: '💆'
-  },
-  {
-    id: 'amatara',
-    name: 'Amatara Wellness Resort',
-    loc: 'Phuket, Thailand',
-    region: 'asia',
-    types: ['asia'],
-    desc: 'Luxury hillside resort above Phuket with a structured gut health retreat. Combines functional medicine, TCM, and integrative nutrition in a serene tropical setting above the Andaman Sea.',
-    tags: ['Gut health retreat','Functional medicine','TCM therapies','Personalized programs'],
-    url: 'https://amatara.com',
-    img: 'https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=600&h=280&fit=crop',
-    icon: '🌺'
-  },
-  {
-    id: 'farmsanbenito',
-    name: 'Farm at San Benito',
-    loc: 'Batangas, Philippines',
-    region: 'asia',
-    types: ['asia'],
-    desc: 'Naturopath-led integrative wellness center with explicit post-oncology protocols. One of Asia\'s only resorts with programs specifically designed around cancer recovery using Hippocrates-style healing therapies.',
-    tags: ['Post-cancer protocols','Naturopathy','Juice therapy','Holistic oncology','Organic farm cuisine'],
-    url: 'https://thefarm.com.ph',
-    img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=280&fit=crop',
-    icon: '🌿'
-  },
-  {
-    id: 'como',
-    name: 'COMO Shambhala Estate',
-    loc: 'Ubud, Bali, Indonesia',
-    region: 'asia',
-    types: ['asia'],
-    desc: 'Jungle wellness estate deep in Ubud with integrative practitioners, Ayurvedic medicine, and immersive nature-based healing. Known worldwide for deep physical and spiritual restoration after illness.',
-    tags: ['Integrative wellness','Ayurveda','Yoga & meditation','Jungle immersion','Nutritional healing'],
-    url: 'https://comohotels.com/como-shambhala-estate',
-    img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&h=280&fit=crop',
-    icon: '🕌'
-  },
-  {
-    id: 'sixsenses',
-    name: 'Six Senses Vana',
-    loc: 'Dehradun, India — Himalayan foothills',
-    region: 'asia',
-    types: ['asia'],
-    desc: 'A contemplative wellness ashram in a sal forest at the base of the Himalayas. Deeply integrative with Ayurveda, yoga, Tibetan medicine, and emotional resilience work — a truly soul-nourishing place.',
-    tags: ['Ayurveda','Tibetan medicine','Yoga','Emotional resilience','Himalayan setting'],
-    url: 'https://sixsenses.com/resorts/vana',
-    img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=280&fit=crop',
-    icon: '🏔'
-  },
-  {
-    id: 'sha',
-    name: 'SHA Wellness Clinic',
-    loc: 'Alicante, Spain — Mediterranean coast',
-    region: 'europe',
-    types: ['europe'],
-    desc: 'A serious medical clinic on the Mediterranean combining macrobiotic nutrition — long used by cancer patients — with precision diagnostics. Gut health program includes intestinal ozone therapy and visceral osteopathy.',
-    tags: ['Gut health program','Macrobiotic nutrition','Medical diagnostics','Ozone therapy','Mediterranean coast'],
-    url: 'https://shawellness.com',
-    img: 'https://images.unsplash.com/photo-1504512485720-7d83a16ee930?w=600&h=280&fit=crop',
-    icon: '☀️'
-  },
-  {
-    id: 'lanserhof',
-    name: 'Lanserhof Tegernsee',
-    loc: 'Bavarian Alps, Germany',
-    region: 'europe',
-    types: ['europe'],
-    desc: 'Europe\'s flagship Mayr Medicine clinic — the most medically rigorous retreat on this list. Advanced gut diagnostics, a Brain Health Centre, and explicit post-cancer rehabilitation protocols in a stunning Alpine setting.',
-    tags: ['Mayr Medicine','Advanced diagnostics','Post-cancer rehab','Gut regeneration','Alpine clinic'],
-    url: 'https://lanserhof.com/tegernsee',
-    img: 'https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=600&h=280&fit=crop',
-    icon: '🏔'
-  },
-  {
-    id: 'mayrlife',
-    name: 'MAYRLIFE',
-    loc: 'Lake Altaussee, Austria',
-    region: 'europe',
-    types: ['europe'],
-    desc: 'The world\'s leading Mayr Medicine resort, on a breathtaking Austrian Alpine lake. The FX Mayr cure targets gut regeneration at its root — metabolism, immunity, and self-healing through deep intestinal repair.',
-    tags: ['FX Mayr cure','Gut regeneration','Immune support','Alpine lake','Modern Mayr Medicine'],
-    url: 'https://mayrlife.com',
-    img: 'https://images.unsplash.com/photo-1439853949212-936aae8a7f5d?w=600&h=280&fit=crop',
-    icon: '🏞'
-  },
-  {
-    id: 'lefay',
-    name: 'Lefay Resort & SPA',
-    loc: 'Lake Garda, Italy',
-    region: 'europe',
-    types: ['europe'],
-    desc: 'Perched above Lake Garda with extraordinary views, blending Classical Chinese Medicine with Western science in a way rarely found in Europe. Highly reviewed for deep post-illness recovery.',
-    tags: ['Chinese Medicine + Western','Gut & immunity','Lake Garda views','Personalized programs'],
-    url: 'https://lefayresorts.com/lago-di-garda',
-    img: 'https://images.unsplash.com/photo-1481824429379-491fc5a3cf89?w=600&h=280&fit=crop',
-    icon: '🇮🇹'
-  },
-  {
-    id: 'alpine',
-    name: 'Alpine Refuge Retreat',
-    loc: 'Austrian Alps',
-    region: 'europe',
-    types: ['europe','cancer-only'],
-    isCancerOnly: true,
-    desc: 'The ONLY retreat on this entire list designed exclusively for cancer survivors and caregivers. Founded by an oncology RN and a clinical social worker. Seven nights of peer support, life purpose work, and integrative healing.',
-    tags: ['Cancer survivors ONLY','Caregiver-friendly','Oncology-founded','Life purpose work','Peer community'],
-    url: 'https://alpinerefugeretreat.com',
-    img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=280&fit=crop',
-    icon: '💗'
-  },
-  {
-    id: 'commonweal',
-    name: 'Commonweal Cancer Help Program',
-    loc: 'Point Reyes National Seashore, California',
-    region: 'usa',
-    types: ['namerica','cancer-only'],
-    isCancerOnly: true,
-    desc: 'Widely considered the premier residential cancer retreat in the United States — operating since 1986 with 225+ retreats held. Week-long, limited to just 8 participants. Includes psychotherapy, massage, yoga, meditation, and a gourmet vegetarian diet on spectacular Pacific Ocean cliffs.',
-    tags: ['Cancer survivors only','Psychotherapy-led','Yoga & meditation','Massage included','Pacific cliffs','Since 1986'],
-    url: 'https://cancerhelpprogram.org',
-    img: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=600&h=280&fit=crop',
-    icon: '🌊'
-  },
-  {
-    id: 'smithcenter',
-    name: 'Smith Center for Healing and the Arts',
-    loc: 'Washington, DC',
-    region: 'usa',
-    types: ['namerica','cancer-only'],
-    isCancerOnly: true,
-    desc: 'The East Coast sibling of Commonweal, offering week-long, weekend, and day-long retreats for cancer survivors and their caregivers. Generous scholarships available. Deep integrative healing with 40+ years of lineage behind it.',
-    tags: ['Cancer survivors only','Week & weekend options','Scholarships available','Men & women welcome','Commonweal-inspired'],
-    url: 'https://smithcenter.org',
-    img: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=600&h=280&fit=crop',
-    icon: '🎨'
-  },
-  {
-    id: 'callanish',
-    name: 'Callanish',
-    loc: 'Vancouver, British Columbia, Canada',
-    region: 'canada',
-    types: ['namerica','cancer-only'],
-    isCancerOnly: true,
-    desc: 'Canada\'s most respected post-cancer retreat, inspired by Commonweal. Week-long residential retreats for people who have been irrevocably changed by cancer, plus ongoing community programs throughout the year.',
-    tags: ['Cancer survivors only','Week-long residential','Ongoing community','Canada\'s premier','Integrative healing'],
-    url: 'https://callanish.org',
-    img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=280&fit=crop',
-    icon: '🍁'
-  },
-  {
-    id: 'canyonranch',
-    name: 'Canyon Ranch',
-    loc: 'Tucson, AZ and Lenox, MA',
-    region: 'usa',
-    types: ['namerica'],
-    desc: 'America\'s gold-standard integrative wellness resort, operating for 40+ years. Medical doctors, nutritionists, and mental health practitioners all on staff — one of the most credentialed wellness destinations in the country.',
-    tags: ['Medical staff on-site','Integrative wellness','Nutrition counseling','Mind-body programs','40+ year track record'],
-    url: 'https://canyonranch.com',
-    img: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=280&fit=crop',
-    icon: '🌵'
-  },
-  {
-    id: 'miraval',
-    name: 'Miraval Arizona',
-    loc: 'Tucson, Arizona',
-    region: 'usa',
-    types: ['namerica'],
-    desc: 'Award-winning mindfulness and wellness resort in the Sonoran Desert. Emphasizes emotional healing, stress recovery, equine therapy, and mind-body work — beloved by people navigating major life transitions and illness recovery.',
-    tags: ['Mindfulness-based','Equine therapy','Emotional healing','Desert setting','Stress recovery'],
-    url: 'https://miravalresorts.com',
-    img: 'https://images.unsplash.com/photo-1533107862482-0e6974b06ec4?w=600&h=280&fit=crop',
-    icon: '🌄'
-  },
-  {
-    id: 'sedona',
-    name: 'Sedona Wellness Retreat',
-    loc: 'Sedona, Arizona',
-    region: 'usa',
-    types: ['namerica'],
-    desc: 'One of the only residential retreats in the USA offering medically supervised Gerson Therapy — an intensive nutritional detox protocol with decades of use among cancer recovery patients. Personalized programs with doctors on-site.',
-    tags: ['Gerson Therapy','Medical supervision','Organic juicing','Cancer recovery focus','Doctors on-site'],
-    url: 'https://sedonawellnessretreat.com',
-    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=280&fit=crop',
-    icon: '🔮'
-  },
-  {
-    id: 'kripalu',
-    name: 'Kripalu Center for Yoga & Health',
-    loc: 'Stockbridge, Massachusetts',
-    region: 'usa',
-    types: ['namerica'],
-    desc: 'The largest yoga and health retreat center in North America, nestled in the Berkshires. Offers regular programs on healing after illness, mind-body medicine, and nutrition. Affordable, non-luxury, deeply nourishing — a beloved institution.',
-    tags: ['Yoga & meditation','Mind-body programs','Nutrition workshops','Affordable','Berkshires setting'],
-    url: 'https://kripalu.org',
-    img: 'https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=600&h=280&fit=crop',
-    icon: '🧘'
-  },
-  {
-    id: 'esalen',
-    name: 'Esalen Institute',
-    loc: 'Big Sur, California',
-    region: 'usa',
-    types: ['namerica'],
-    desc: 'The legendary human potential center on the cliffs of Big Sur, founded in 1962. Offers workshops on grief, illness, life purpose, and somatic healing led by world-class teachers. Scholarships available. An American institution.',
-    tags: ['Human potential','Somatic healing','Life purpose workshops','Iconic cliffside','Scholarships available'],
-    url: 'https://esalen.org',
-    img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=280&fit=crop',
-    icon: '🌅'
-  },
-  {
-    id: 'harmonyhill',
-    name: 'Harmony Hill',
-    loc: 'Union, Washington',
-    region: 'usa',
-    types: ['namerica','free'],
-    isFree: true,
-    desc: 'Free 3-day retreat on Hood Canal open to anyone with any cancer and their companion. Yoga, meditation, art, poetry, and group sharing in a serene Pacific Northwest forest. One of the most beloved free programs in the country.',
-    tags: ['Free to attend','All cancer types','Companion welcome','Yoga & meditation','Group sharing'],
-    url: 'https://harmonyhill.org',
-    img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=280&fit=crop',
-    icon: '🌲'
-  },
-  {
-    id: 'mending',
-    name: 'Mending in the Mountains',
-    loc: 'Big Sky, Montana',
-    region: 'usa',
-    types: ['namerica','free'],
-    isFree: true,
-    desc: 'Free 3-day mountain retreat for women who have experienced cancer. Focuses on self-care in survivorship through nutrition, exercise, and meditation in a spectacular Big Sky setting.',
-    tags: ['Free to attend','Women survivors','Nutrition focus','Meditation','Big Sky, Montana'],
-    url: 'https://mendinginthemountains.org',
-    img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=280&fit=crop',
-    icon: '⛰'
-  },
-  {
-    id: 'reelrecovery',
-    name: 'Reel Recovery',
-    loc: 'Multiple USA locations',
-    region: 'usa',
-    types: ['namerica','free'],
-    isFree: true,
-    desc: 'Free 2.5-day fly fishing retreats for men at any stage of cancer treatment or remission. All meals, lodging, and gear provided. A proven formula for deep camaraderie and emotional reset in beautiful nature.',
-    tags: ['Free to attend','Men with any cancer','Fly fishing','Peer support','All meals & gear'],
-    url: 'https://reelrecovery.org',
-    img: 'https://images.unsplash.com/photo-1542380560-d196e5f0e8c5?w=600&h=280&fit=crop',
-    icon: '🎣'
-  },
-  {
-    id: 'livebyliving',
-    name: 'Live By Living',
-    loc: 'Multiple USA locations',
-    region: 'usa',
-    types: ['namerica','free'],
-    isFree: true,
-    desc: 'Free nature-centric retreats for adult cancer survivors and caregivers nationwide. Activities customized to physical abilities — hikes, nature walks, snowshoe outings — designed to reconnect with life after cancer.',
-    tags: ['Free to attend','Nature-based','Caregiver-friendly','All abilities welcome','Nationwide'],
-    url: 'https://livebyliving.org',
-    img: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&h=280&fit=crop',
-    icon: '🥾'
-  },
-  {
-    id: 'blantonhouse',
-    name: 'Cancer Retreat Centers (Blanton House)',
-    loc: 'Richmond, Virginia',
-    region: 'usa',
-    types: ['namerica','free'],
-    isFree: true,
-    desc: 'A beautifully renovated historic mansion in Richmond\'s largest city park. Free evidence-based services for cancer survivors at all stages — yoga, peer programs, and integrative wellness. Expanding to new cities.',
-    tags: ['Free to attend','Evidence-based','All stages welcome','Ongoing programs','Expanding nationally'],
-    url: 'https://cancerretreatcenters.org',
-    img: 'https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?w=600&h=280&fit=crop',
-    icon: '🏛'
-  },
-  {
-    id: 'respite',
-    name: 'Respite Retreats',
-    loc: 'USA — multiple sites',
-    region: 'usa',
-    types: ['namerica','free'],
-    isFree: true,
-    desc: 'Holistic day and weekend retreats for cancer patients, caregivers, and families. Focuses on refueling the spirit, rediscovering joy, and deeper family connection — healing together, not alone.',
-    tags: ['Free to attend','Families welcome','Caregivers included','Holistic activities','Spiritual focus'],
-    url: 'https://respiteretreats.org',
-    img: 'https://images.unsplash.com/photo-1490750967868-88df5691cc6a?w=600&h=280&fit=crop',
-    icon: '🌻'
-  }
+/* ── QUOTES ── */
+var quotes = [
+  { text: "Healing is not a straight line — it has so many curves, bumps, hills, and turns in it. But if you get back on the road, you start out at the place where you left it, not the place where you began.", attr: "Jon Katz, Bedlam Farm Journal, 2018" },
+  { text: "The wound is the place where the light enters you.", attr: "Rumi — Masnavi, 13th century" },
+  { text: "The natural healing force within each of us is the greatest force in getting well.", attr: "Hippocrates, c. 400 BC" },
+  { text: "Although the world is full of suffering, it is also full of the overcoming of it.", attr: "Helen Keller — Optimism, 1903" },
+  { text: "Healing may not be so much about getting better, as about letting go of everything that isn't you — and becoming who you are.", attr: "Rachel Naomi Remen, MD — Kitchen Table Wisdom, 1996" },
+  { text: "It does not matter how slowly you go as long as you do not stop.", attr: "Confucius — Analects, c. 500 BC" },
+  { text: "No one saves us but ourselves. No one can, and no one may. We ourselves must walk the path.", attr: "Gautama Buddha — Dhammapada" },
+  { text: "The best way out is always through.", attr: "Robert Frost — A Servant to Servants, 1914" },
+  { text: "Out of suffering have emerged the strongest souls; the most massive characters are seared with scars.", attr: "Kahlil Gibran — The Prophet, 1923" }
 ];
 
-/* ── FAVORITES (localStorage) ── */
-function getFavs() {
-  try { return JSON.parse(localStorage.getItem('katie_retreat_favs') || '{}'); } catch(e) { return {}; }
+var qIdx = 0;
+var qTimer;
+
+function buildCarousel() {
+  var c = document.getElementById('carousel');
+  var d = document.getElementById('qdots');
+  c.innerHTML = ''; d.innerHTML = '';
+  quotes.forEach(function(q, i) {
+    var s = document.createElement('div');
+    s.className = 'quote-slide' + (i === 0 ? ' active' : '');
+    s.innerHTML = '<div class="quote-text">\u201c' + q.text + '\u201d</div><div class="quote-attr">— ' + q.attr + '</div>';
+    c.appendChild(s);
+    var dot = document.createElement('button');
+    dot.className = 'qdot' + (i === 0 ? ' active' : '');
+    dot.onclick = (function(idx){ return function(){ goTo(idx); resetTimer(); }; })(i);
+    d.appendChild(dot);
+  });
 }
-function setFavs(f) {
-  try { localStorage.setItem('katie_retreat_favs', JSON.stringify(f)); } catch(e) {}
+
+function goTo(n) {
+  var slides = document.querySelectorAll('.quote-slide');
+  var dots   = document.querySelectorAll('.qdot');
+  slides[qIdx].classList.remove('active');
+  dots[qIdx].classList.remove('active');
+  qIdx = (n + quotes.length) % quotes.length;
+  slides[qIdx].classList.add('active');
+  dots[qIdx].classList.add('active');
 }
+
+function advance() { goTo(qIdx + 1); }
+
+function resetTimer() {
+  clearInterval(qTimer);
+  qTimer = setInterval(advance, 10000);
+}
+
+buildCarousel();
+resetTimer();
+
+/* ── GRADIENTS (offline fallback) ── */
+var gradients = {
+  asia:   'linear-gradient(135deg, #e8520a, #f5a623)',
+  europe: 'linear-gradient(135deg, #1a56c4, #0d8fa0)',
+  usa:    'linear-gradient(135deg, #158a52, #1abc9c)',
+  canada: 'linear-gradient(135deg, #7c3aed, #c4185e)'
+};
+
+/* ── RETREAT DATA ── */
+var retreats = [
+  { id:'kamalaya', name:'Kamalaya Koh Samui', loc:'Koh Samui, Thailand', region:'asia', types:['asia'], desc:"Award-winning integrative resort with a dedicated gut health program. Draws on naturopathy, Ayurveda, and Chinese medicine — one of the world's most respected post-illness retreats.", tags:['Gut health program','Naturopathy','Ayurveda','Emotional recovery','Integrative medicine'], url:'https://kamalaya.com', img:'https://picsum.photos/seed/kamalaya-spa/600/280', icon:'🌴' },
+  { id:'chivasom', name:'Chiva-Som', loc:'Hua Hin, Thailand', region:'asia', types:['asia'], desc:"One of the world's oldest and most-reviewed destination wellness resorts. Dedicated gut health program using probiotics, nutrition, abdominal massage, and colonics — directly relevant to colon and rectal recovery.", tags:['Dedicated gut health','Probiotic nutrition','Detox colonics','Tai Chi / yoga','Beachfront'], url:'https://chivasom.com', img:'https://picsum.photos/seed/chivasom-beach/600/280', icon:'🌊' },
+  { id:'rakxa', name:'RAKxa Integrative Wellness', loc:'Bangkok, Thailand', region:'asia', types:['asia'], desc:"Medical clinic meets holistic retreat. The 7- or 10-night Gut & Immunity program combines clinical colon hydrotherapy and lab testing with Ayurveda, acupuncture, and an anti-inflammatory diet.", tags:['Gut & immunity program','Lab diagnostics','Colon hydrotherapy','Microbiome support','Acupuncture'], url:'https://rakxa.com', img:'https://picsum.photos/seed/rakxa-wellness/600/280', icon:'💆' },
+  { id:'amatara', name:'Amatara Wellness Resort', loc:'Phuket, Thailand', region:'asia', types:['asia'], desc:"Luxury hillside resort above Phuket with a structured gut health retreat. Combines functional medicine, TCM, and integrative nutrition in a serene tropical setting above the Andaman Sea.", tags:['Gut health retreat','Functional medicine','TCM therapies','Personalized programs'], url:'https://amatara.com', img:'https://picsum.photos/seed/amatara-phuket/600/280', icon:'🌺' },
+  { id:'farmsanbenito', name:'Farm at San Benito', loc:'Batangas, Philippines', region:'asia', types:['asia'], desc:"Naturopath-led center with explicit post-oncology protocols. One of Asia's only resorts with programs specifically designed around cancer recovery using Hippocrates-style healing therapies.", tags:['Post-cancer protocols','Naturopathy','Juice therapy','Holistic oncology','Organic farm cuisine'], url:'https://thefarm.com.ph', img:'https://picsum.photos/seed/sanbenito-farm/600/280', icon:'🌿' },
+  { id:'como', name:'COMO Shambhala Estate', loc:'Ubud, Bali, Indonesia', region:'asia', types:['asia'], desc:"Jungle wellness estate deep in Ubud with integrative practitioners, Ayurvedic medicine, and immersive nature-based healing. Known worldwide for deep physical and spiritual restoration after illness.", tags:['Integrative wellness','Ayurveda','Yoga & meditation','Jungle immersion','Nutritional healing'], url:'https://comohotels.com/como-shambhala-estate', img:'https://picsum.photos/seed/como-bali-jungle/600/280', icon:'🕌' },
+  { id:'sixsenses', name:'Six Senses Vana', loc:'Dehradun, India — Himalayan foothills', region:'asia', types:['asia'], desc:"A contemplative wellness ashram in a sal forest at the base of the Himalayas. Deeply integrative with Ayurveda, yoga, Tibetan medicine, and emotional resilience work.", tags:['Ayurveda','Tibetan medicine','Yoga','Emotional resilience','Himalayan setting'], url:'https://sixsenses.com/resorts/vana', img:'https://picsum.photos/seed/sixsenses-himalaya/600/280', icon:'🏔' },
+  { id:'sha', name:'SHA Wellness Clinic', loc:'Alicante, Spain — Mediterranean coast', region:'europe', types:['europe'], desc:"A serious medical clinic on the Mediterranean combining macrobiotic nutrition — long used by cancer patients — with precision diagnostics. Gut health program includes intestinal ozone therapy and visceral osteopathy.", tags:['Gut health program','Macrobiotic nutrition','Medical diagnostics','Ozone therapy','Mediterranean coast'], url:'https://shawellness.com', img:'https://picsum.photos/seed/sha-mediterranean/600/280', icon:'☀️' },
+  { id:'lanserhof', name:'Lanserhof Tegernsee', loc:'Bavarian Alps, Germany', region:'europe', types:['europe'], desc:"Europe's flagship Mayr Medicine clinic — the most medically rigorous retreat on this list. Advanced gut diagnostics, a Brain Health Centre, and explicit post-cancer rehabilitation protocols in a stunning Alpine setting.", tags:['Mayr Medicine','Advanced diagnostics','Post-cancer rehab','Gut regeneration','Alpine clinic'], url:'https://lanserhof.com/tegernsee', img:'https://picsum.photos/seed/lanserhof-alps/600/280', icon:'🏔' },
+  { id:'mayrlife', name:'MAYRLIFE', loc:'Lake Altaussee, Austria', region:'europe', types:['europe'], desc:"The world's leading Mayr Medicine resort on a breathtaking Austrian Alpine lake. The FX Mayr cure targets gut regeneration at its root — metabolism, immunity, and self-healing through deep intestinal repair.", tags:['FX Mayr cure','Gut regeneration','Immune support','Alpine lake','Modern Mayr Medicine'], url:'https://mayrlife.com', img:'https://picsum.photos/seed/mayrlife-austria/600/280', icon:'🏞' },
+  { id:'lefay', name:'Lefay Resort & SPA', loc:'Lake Garda, Italy', region:'europe', types:['europe'], desc:"Perched above Lake Garda with extraordinary views, blending Classical Chinese Medicine with Western science in a way rarely found in Europe. Highly reviewed for deep post-illness recovery.", tags:['Chinese Medicine + Western','Gut & immunity','Lake Garda views','Personalized programs'], url:'https://lefayresorts.com/lago-di-garda', img:'https://picsum.photos/seed/lefay-lakegarda/600/280', icon:'🇮🇹' },
+  { id:'alpine', name:'Alpine Refuge Retreat', loc:'Austrian Alps', region:'europe', types:['europe','cancer-only'], isCancerOnly:true, desc:"The only retreat on this list designed exclusively for cancer survivors and caregivers. Founded by an oncology RN and a clinical social worker. Seven nights of peer support, life purpose work, and integrative healing.", tags:['Cancer survivors ONLY','Caregiver-friendly','Oncology-founded','Life purpose work','Peer community'], url:'https://alpinerefugeretreat.com', img:'https://picsum.photos/seed/alpine-refuge/600/280', icon:'💗' },
+  { id:'commonweal', name:'Commonweal Cancer Help Program', loc:'Point Reyes National Seashore, California', region:'usa', types:['namerica','cancer-only'], isCancerOnly:true, desc:"The premier residential cancer retreat in the USA — operating since 1986 with 225+ retreats held. Week-long, limited to 8 participants. Psychotherapy, massage, yoga, meditation, and a gourmet vegetarian diet on spectacular Pacific Ocean cliffs.", tags:['Cancer survivors only','Psychotherapy-led','Yoga & meditation','Massage included','Pacific cliffs','Since 1986'], url:'https://cancerhelpprogram.org', img:'https://picsum.photos/seed/commonweal-pacific/600/280', icon:'🌊' },
+  { id:'smithcenter', name:'Smith Center for Healing and the Arts', loc:'Washington, DC', region:'usa', types:['namerica','cancer-only'], isCancerOnly:true, desc:"The East Coast sibling of Commonweal, offering week-long, weekend, and day-long retreats for cancer survivors and caregivers. Generous scholarships available. Deep integrative healing with 40+ years of lineage.", tags:['Cancer survivors only','Week & weekend options','Scholarships available','Men & women welcome','Commonweal-inspired'], url:'https://smithcenter.org', img:'https://picsum.photos/seed/smithcenter-dc/600/280', icon:'🎨' },
+  { id:'callanish', name:'Callanish', loc:'Vancouver, British Columbia, Canada', region:'canada', types:['namerica','cancer-only'], isCancerOnly:true, desc:"Canada's most respected post-cancer retreat. Week-long residential retreats for people irrevocably changed by cancer, plus ongoing community programs throughout the year.", tags:['Cancer survivors only','Week-long residential','Ongoing community','Canada\'s premier','Integrative healing'], url:'https://callanish.org', img:'https://picsum.photos/seed/callanish-vancouver/600/280', icon:'🍁' },
+  { id:'canyonranch', name:'Canyon Ranch', loc:'Tucson, AZ and Lenox, MA', region:'usa', types:['namerica'], desc:"America's gold-standard integrative wellness resort, operating for 40+ years. Medical doctors, nutritionists, and mental health practitioners all on staff — one of the most credentialed wellness destinations in the country.", tags:['Medical staff on-site','Integrative wellness','Nutrition counseling','Mind-body programs','40+ year track record'], url:'https://canyonranch.com', img:'https://picsum.photos/seed/canyonranch-desert/600/280', icon:'🌵' },
+  { id:'miraval', name:'Miraval Arizona', loc:'Tucson, Arizona', region:'usa', types:['namerica'], desc:"Award-winning mindfulness and wellness resort in the Sonoran Desert. Emphasizes emotional healing, stress recovery, equine therapy, and mind-body work — popular with people navigating major life transitions including illness recovery.", tags:['Mindfulness-based','Equine therapy','Emotional healing','Desert setting','Stress recovery'], url:'https://miravalresorts.com', img:'https://picsum.photos/seed/miraval-sonoran/600/280', icon:'🌄' },
+  { id:'sedona', name:'Sedona Wellness Retreat', loc:'Sedona, Arizona', region:'usa', types:['namerica'], desc:"One of the only residential retreats in the USA offering medically supervised Gerson Therapy — an intensive nutritional detox protocol with decades of use among cancer recovery patients. Personalized programs with doctors on-site.", tags:['Gerson Therapy','Medical supervision','Organic juicing','Cancer recovery focus','Doctors on-site'], url:'https://sedonawellnessretreat.com', img:'https://picsum.photos/seed/sedona-redrock/600/280', icon:'🔮' },
+  { id:'kripalu', name:'Kripalu Center for Yoga & Health', loc:'Stockbridge, Massachusetts', region:'usa', types:['namerica'], desc:"The largest yoga and health retreat center in North America, nestled in the Berkshires. Offers regular programs on healing after illness, mind-body medicine, and nutrition. Affordable, non-luxury, and deeply nourishing.", tags:['Yoga & meditation','Mind-body programs','Nutrition workshops','Affordable','Berkshires setting'], url:'https://kripalu.org', img:'https://picsum.photos/seed/kripalu-berkshires/600/280', icon:'🧘' },
+  { id:'esalen', name:'Esalen Institute', loc:'Big Sur, California', region:'usa', types:['namerica'], desc:"The legendary human potential center on the cliffs of Big Sur, founded in 1962. Offers workshops on grief, illness, life purpose, and somatic healing led by world-class teachers. Scholarships available.", tags:['Human potential','Somatic healing','Life purpose workshops','Iconic cliffside','Scholarships available'], url:'https://esalen.org', img:'https://picsum.photos/seed/esalen-bigsur/600/280', icon:'🌅' },
+  { id:'harmonyhill', name:'Harmony Hill', loc:'Union, Washington', region:'usa', types:['namerica','free'], isFree:true, desc:"Free 3-day retreat on Hood Canal open to anyone with any cancer and their companion. Yoga, meditation, art, poetry, and group sharing in a serene Pacific Northwest forest setting.", tags:['Free to attend','All cancer types','Companion welcome','Yoga & meditation','Group sharing'], url:'https://harmonyhill.org', img:'https://picsum.photos/seed/harmonyhill-pnw/600/280', icon:'🌲' },
+  { id:'mending', name:'Mending in the Mountains', loc:'Big Sky, Montana', region:'usa', types:['namerica','free'], isFree:true, desc:"Free 3-day mountain retreat for women who have experienced cancer. Focuses on self-care in survivorship through nutrition, exercise, and meditation in a spectacular Big Sky setting.", tags:['Free to attend','Women survivors','Nutrition focus','Meditation','Big Sky, Montana'], url:'https://mendinginthemountains.org', img:'https://picsum.photos/seed/mending-montana/600/280', icon:'⛰' },
+  { id:'reelrecovery', name:'Reel Recovery', loc:'Multiple USA locations', region:'usa', types:['namerica','free'], isFree:true, desc:"Free 2.5-day fly fishing retreats for men at any stage of cancer treatment or remission. All meals, lodging, and gear provided. A proven formula for deep camaraderie and emotional reset in beautiful natural settings.", tags:['Free to attend','Men with any cancer','Fly fishing','Peer support','All meals & gear'], url:'https://reelrecovery.org', img:'https://picsum.photos/seed/reel-recovery-river/600/280', icon:'🎣' },
+  { id:'livebyliving', name:'Live By Living', loc:'Multiple USA locations', region:'usa', types:['namerica','free'], isFree:true, desc:"Free nature-centric retreats for adult cancer survivors and caregivers nationwide. Activities customized to all physical abilities — hikes, nature walks, and snowshoe outings designed to reconnect with life after cancer.", tags:['Free to attend','Nature-based','Caregiver-friendly','All abilities welcome','Nationwide'], url:'https://livebyliving.org', img:'https://picsum.photos/seed/livebyliving-trail/600/280', icon:'🥾' },
+  { id:'blantonhouse', name:'Cancer Retreat Centers (Blanton House)', loc:'Richmond, Virginia', region:'usa', types:['namerica','free'], isFree:true, desc:"A beautifully renovated historic mansion in Richmond's largest city park. Free evidence-based services for cancer survivors at all stages — yoga, peer programs, and integrative wellness. Expanding to new cities.", tags:['Free to attend','Evidence-based','All stages welcome','Ongoing programs','Expanding nationally'], url:'https://cancerretreatcenters.org', img:'https://picsum.photos/seed/blantonhouse-richmond/600/280', icon:'🏛' },
+  { id:'respite', name:'Respite Retreats', loc:'USA — multiple sites', region:'usa', types:['namerica','free'], isFree:true, desc:"Holistic day and weekend retreats for cancer patients, caregivers, and families. Focuses on refueling the spirit, rediscovering joy, and deeper family connection — healing together, not alone.", tags:['Free to attend','Families welcome','Caregivers included','Holistic activities','Spiritual focus'], url:'https://respiteretreats.org', img:'https://picsum.photos/seed/respite-garden/600/280', icon:'🌻' }
+];
+
+/* ── FAVORITES ── */
+function getFavs() { try { return JSON.parse(localStorage.getItem('healing_retreat_favs') || '{}'); } catch(e) { return {}; } }
+function setFavs(f) { try { localStorage.setItem('healing_retreat_favs', JSON.stringify(f)); } catch(e) {} }
 function toggleFav(id, btn) {
-  var favs = getFavs();
-  if (favs[id]) { delete favs[id]; btn.textContent = '🤍'; btn.classList.remove('active'); }
-  else { favs[id] = true; btn.textContent = '❤️'; btn.classList.add('active'); }
-  setFavs(favs);
+  var f = getFavs();
+  if (f[id]) { delete f[id]; btn.textContent = '🤍'; btn.classList.remove('active'); }
+  else { f[id] = true; btn.textContent = '❤️'; btn.classList.add('active'); }
+  setFavs(f);
+}
+function imgFallback(img, r) {
+  img.onerror = null;
+  img.style.display = 'none';
+  var fb = img.parentNode.querySelector('.card-img-fallback');
+  if (fb) { fb.style.background = gradients[r] || gradients['usa']; fb.style.display = 'flex'; }
 }
 
 /* ── FILTER ── */
-var currentFilter = 'all';
 function sf(f, btn) {
-  currentFilter = f;
   document.querySelectorAll('.btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
   render(f);
-}
-
-function imgFallback(img, region) {
-  img.onerror = null;
-  img.style.display = 'none';
-  var wrap = img.parentNode;
-  var fb = wrap.querySelector('.card-img-fallback');
-  if (fb) fb.style.display = 'flex';
 }
 
 function render(f) {
@@ -717,33 +446,30 @@ function render(f) {
     n++;
 
     var isFav = !!favs[r.id];
-    var grad  = gradients[r.region] || gradients['usa'];
+    var bh = '';
+    if (r.region === 'asia')   bh += '<span class="badge badge-asia">Asia</span> ';
+    if (r.region === 'europe') bh += '<span class="badge badge-europe">Europe</span> ';
+    if (r.region === 'usa')    bh += '<span class="badge badge-usa">USA</span> ';
+    if (r.region === 'canada') bh += '<span class="badge badge-canada">Canada</span> ';
+    if (r.isFree)              bh += '<span class="badge badge-free">Free</span> ';
+    if (r.isCancerOnly)        bh += '<span class="badge badge-cancer">Survivors Only</span>';
 
-    /* badges */
-    var bhtml = '';
-    if (r.region === 'asia')   bhtml += '<span class="badge badge-asia">Asia</span> ';
-    if (r.region === 'europe') bhtml += '<span class="badge badge-europe">Europe</span> ';
-    if (r.region === 'usa')    bhtml += '<span class="badge badge-usa">USA</span> ';
-    if (r.region === 'canada') bhtml += '<span class="badge badge-canada">Canada</span> ';
-    if (r.isFree)              bhtml += '<span class="badge badge-free">Free</span> ';
-    if (r.isCancerOnly)        bhtml += '<span class="badge badge-cancer">Survivors Only</span>';
-
-    var tagsHtml = r.tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('');
+    var th = r.tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('');
 
     var card = document.createElement('div');
     card.className = 'card';
     card.innerHTML =
       '<div class="card-img-wrap">' +
         '<img class="card-img" src="' + r.img + '" alt="' + r.name + '" loading="lazy" onerror="imgFallback(this,\'' + r.region + '\')">' +
-        '<div class="card-img-fallback" style="background:' + grad + ';display:none;font-size:3.5rem;color:rgba(255,255,255,0.8)">' + r.icon + '</div>' +
-        '<button class="fav-btn ' + (isFav ? 'active' : '') + '" onclick="toggleFav(\'' + r.id + '\',this)" title="Save to favorites">' + (isFav ? '❤️' : '🤍') + '</button>' +
+        '<div class="card-img-fallback" style="display:none;">' + r.icon + '</div>' +
+        '<button class="fav-btn ' + (isFav ? 'active' : '') + '" onclick="toggleFav(\'' + r.id + '\',this)" title="Save retreat">' + (isFav ? '❤️' : '🤍') + '</button>' +
       '</div>' +
       '<div class="card-body">' +
-        '<div class="card-badges">' + bhtml + '</div>' +
+        '<div class="card-badges">' + bh + '</div>' +
         '<div class="card-name">' + r.name + '</div>' +
         '<div class="card-loc">' + r.loc + '</div>' +
         '<div class="card-desc">' + r.desc + '</div>' +
-        '<div class="card-tags">' + tagsHtml + '</div>' +
+        '<div class="card-tags">' + th + '</div>' +
       '</div>' +
       '<div class="card-footer">' +
         '<a class="visit-btn" href="' + r.url + '" target="_blank">Visit Website →</a>' +
@@ -751,7 +477,13 @@ function render(f) {
     grid.appendChild(card);
   });
 
-  /* count bar */
+  if (n === 0 && f !== 'favs') {
+    grid.innerHTML = '<div class="no-results">No retreats found for this filter.</div>';
+  }
+  if (n === 0 && f === 'favs') {
+    grid.innerHTML = '<div class="no-results">No saved retreats yet — tap 🤍 on any card to save it here.</div>';
+  }
+
   var labels = {
     all: 'Showing all {n} healing retreats worldwide',
     asia: 'Showing {n} retreats in Asia',
@@ -759,13 +491,9 @@ function render(f) {
     namerica: 'Showing {n} retreats in North America',
     'cancer-only': 'Showing {n} retreats exclusively for cancer survivors',
     free: 'Showing {n} free programs',
-    favs: n === 0 ? 'No favorites yet — tap the 🤍 on any card to save it here!' : 'Showing {n} saved favorites'
+    favs: 'Showing {n} saved retreats'
   };
-  var label = (labels[f] || 'Showing {n} retreats').replace('{n}', n);
-  bar.textContent = f === 'favs' && n === 0 ? label : label;
-  if (n === 0 && f !== 'favs') {
-    grid.innerHTML = '<div class="no-results">No retreats found for this filter.</div>';
-  }
+  bar.textContent = (labels[f] || 'Showing {n} retreats').replace('{n}', n);
 }
 
 render('all');
