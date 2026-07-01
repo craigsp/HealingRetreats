@@ -51,8 +51,23 @@ header p.subtitle { font-size: 1.25rem; color: rgba(255,255,255,0.88); max-width
 .card { background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; transition: box-shadow 0.2s ease, transform 0.2s ease; position: relative; }
 .card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.15); transform: translateY(-3px); }
 .card-img-wrap { position: relative; height: 200px; overflow: hidden; flex-shrink: 0; }
+.card-img-wrap a::after {
+  content: '🔗 Visit website';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 0.85rem;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
 .card-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
 .card:hover .card-img { transform: scale(1.04); }
+.card:hover .card-img-wrap a::after { opacity: 1; }
 .card-img-fallback { width: 100%; height: 100%; display: none; align-items: center; justify-content: center; font-size: 3.5rem; }
 .fav-btn { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.92); border: none; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); transition: transform 0.15s ease; z-index: 2; }
 .fav-btn:hover { transform: scale(1.15); }
@@ -90,7 +105,7 @@ header p.subtitle { font-size: 1.25rem; color: rgba(255,255,255,0.88); max-width
 
 <header>
   <h1>Healing Retreats for <em>Cancer Survivors</em></h1>
-  <p class="subtitle">A curated worldwide guide for colorectal cancer survivors — post-treatment wellness programs, integrative healing resorts, and recovery retreats across Asia, Europe, and North America.</p>
+  <p class="subtitle">A curated worldwide guide for cancer survivors — including retreats with dedicated colorectal cancer programs — spanning post-treatment wellness resorts, integrative healing centers, and recovery programs across Asia, Europe, and North America.</p>
   <div class="quote-carousel" id="carousel"></div>
   <div class="quote-dots" id="qdots"></div>
 </header>
@@ -158,7 +173,7 @@ var retreats = [
     desc:"Award-winning integrative resort with a dedicated gut health program covering microbiome restoration, naturopathy, and digestive rehabilitation. One of the world's most respected post-illness retreats — particularly relevant to colorectal survivors rebuilding gut health.",
     tags:['Gut health program','Microbiome restoration','Naturopathy','Ayurveda','Emotional recovery'],
     crcTags:['Gut microbiome program','Digestive rehabilitation'],
-    url:'https://kamalaya.com', img:'https://picsum.photos/seed/kamalaya-spa/600/280', icon:'🌴'
+    url:'https://kamalaya.com', img:'https://kamalaya.com/wp-content/uploads/2021/03/WEB4.jpg', icon:'🌴'
   },
   {
     id:'chivasom', name:'Chiva-Som', loc:'Hua Hin, Thailand', region:'asia', types:['asia','crc'],
@@ -166,7 +181,7 @@ var retreats = [
     desc:"One of the world's oldest and most-reviewed destination wellness resorts. Dedicated gut health program using probiotics, nutrition, abdominal massage, and colonics — directly relevant to colon and rectal recovery. Probiotic nutrition protocols are tailored to post-surgical digestive systems.",
     tags:['Dedicated gut health','Probiotic nutrition','Detox colonics','Tai Chi / yoga','Beachfront'],
     crcTags:['Colon hydrotherapy','Probiotic protocols','Post-surgical nutrition'],
-    url:'https://chivasom.com', img:'https://picsum.photos/seed/chivasom-beach/600/280', icon:'🌊'
+    url:'https://chivasom.com', img:'https://www.chivasom.com/wp-content/uploads/2024/07/Chiva-Som-Leelawadee-Suite-Bedroom-1024x691.webp', icon:'🌊'
   },
   {
     id:'rakxa', name:'RAKxa Integrative Wellness', loc:'Bangkok, Thailand', region:'asia', types:['asia','crc'],
@@ -174,13 +189,13 @@ var retreats = [
     desc:"Medical clinic meets holistic retreat. The 7- or 10-night Gut & Immunity program combines clinical colon hydrotherapy and lab testing with Ayurveda, acupuncture, and an anti-inflammatory diet — one of the most medically thorough gut programs in Asia for post-surgical colorectal recovery.",
     tags:['Gut & immunity program','Lab diagnostics','Colon hydrotherapy','Microbiome support','Acupuncture'],
     crcTags:['Colon hydrotherapy','Microbiome lab testing','Anti-inflammatory nutrition'],
-    url:'https://rakxa.com', img:'https://picsum.photos/seed/rakxa-wellness/600/280', icon:'💆'
+    url:'https://rakxa.com', img:'https://rakxawellness.com/wp-content/uploads/2025/08/PAVILLION-1-2-e1760091270565.webp', icon:'💆'
   },
   {
     id:'amatara', name:'Amatara Wellness Resort', loc:'Phuket, Thailand', region:'asia', types:['asia'],
     desc:"Luxury hillside resort above Phuket with a structured gut health retreat. Combines functional medicine, TCM, and integrative nutrition in a serene tropical setting above the Andaman Sea.",
     tags:['Gut health retreat','Functional medicine','TCM therapies','Personalized programs'],
-    url:'https://amatara.com', img:'https://picsum.photos/seed/amatara-phuket/600/280', icon:'🌺'
+    url:'https://amatara.com', img:'https://amatara.com/wp-content/uploads/2022/11/DJI_0774.jpg', icon:'🌺'
   },
   {
     id:'farmsanbenito', name:'Farm at San Benito', loc:'Batangas, Philippines', region:'asia', types:['asia'],
@@ -192,13 +207,13 @@ var retreats = [
     id:'como', name:'COMO Shambhala Estate', loc:'Ubud, Bali, Indonesia', region:'asia', types:['asia'],
     desc:"Jungle wellness estate deep in Ubud with integrative practitioners, Ayurvedic medicine, and immersive nature-based healing. Known worldwide for deep physical and spiritual restoration after illness.",
     tags:['Integrative wellness','Ayurveda','Yoga & meditation','Jungle immersion','Nutritional healing'],
-    url:'https://comohotels.com/como-shambhala-estate', img:'https://picsum.photos/seed/como-bali-jungle/600/280', icon:'🕌'
+    url:'https://comohotels.com/como-shambhala-estate', img:'https://de87ve0y4m3tc.cloudfront.net/comohotels.com-2459770069/cms/cache/v2/68f0322c25b76.jpg/1512x1512/fit/80/f093f54a88db3a5fa541e88d06af9ebb.jpg', icon:'🕌'
   },
   {
     id:'sixsenses', name:'Six Senses Vana', loc:'Dehradun, India — Himalayan foothills', region:'asia', types:['asia'],
     desc:"A contemplative wellness ashram in a sal forest at the base of the Himalayas. Deeply integrative with Ayurveda, yoga, Tibetan medicine, and emotional resilience work.",
     tags:['Ayurveda','Tibetan medicine','Yoga','Emotional resilience','Himalayan setting'],
-    url:'https://sixsenses.com/resorts/vana', img:'https://picsum.photos/seed/sixsenses-himalaya/600/280', icon:'🏔'
+    url:'https://sixsenses.com/resorts/vana', img:'https://media.sixsenses.com/B60H3R33/at/cxmv2pfwfqhphgrtnxjtnk6/Spaces_Ayurveda_Center.jpg?format=webp&width=1580&height=1580&fit=crop', icon:'🏔'
   },
   {
     id:'sha', name:'SHA Wellness Clinic', loc:'Alicante, Spain — Mediterranean coast', region:'europe', types:['europe','crc'],
@@ -214,7 +229,7 @@ var retreats = [
     desc:"Europe's flagship Mayr Medicine clinic and one of the most medically rigorous retreats on this list. Intestinal rehabilitation protocols, daily abdominal massage, and advanced gut diagnostics make it specifically well-suited to post-surgical colorectal recovery. Explicit post-cancer rehabilitation pathways available under physician supervision.",
     tags:['Mayr Medicine','Advanced diagnostics','Post-cancer rehab','Daily abdominal massage','Alpine clinic'],
     crcTags:['Intestinal rehabilitation','Bowel restoration protocols','Post-surgical gut diagnostics'],
-    url:'https://lanserhof.com/tegernsee', img:'https://picsum.photos/seed/lanserhof-alps/600/280', icon:'🏔'
+    url:'https://lanserhof.com/tegernsee', img:'https://lanserhof.com/_next/image/?url=https%3A%2F%2Fapi.lanserhof.com%2Fwp-content%2Fuploads%2F2024%2F06%2FLans_14552-scaled-aspect-ratio-16-9-scaled.jpg&w=2048&q=100', icon:'🏔'
   },
   {
     id:'mayrlife', name:'MAYRLIFE', loc:'Lake Altaussee, Austria', region:'europe', types:['europe','crc'],
@@ -222,13 +237,13 @@ var retreats = [
     desc:"The world's leading Mayr Medicine resort on a breathtaking Austrian Alpine lake. The FX Mayr cure centers on gut regeneration and intestinal repair — making it uniquely relevant to colorectal survivors rebuilding digestive function after surgery, chemotherapy, or radiation.",
     tags:['FX Mayr cure','Gut regeneration','Immune support','Intestinal repair','Alpine lake'],
     crcTags:['Intestinal repair','Gut flora restoration','Post-treatment microbiome'],
-    url:'https://mayrlife.com', img:'https://picsum.photos/seed/mayrlife-austria/600/280', icon:'🏞'
+    url:'https://mayrlife.com', img:'https://www.mayrlife.com/sites/default/files/styles/paragraph_2_images_text_hoch/public/2023-04/image%2061.jpg?h=bc78512a&itok=MHLyuiFD', icon:'🏞'
   },
   {
     id:'lefay', name:'Lefay Resort & SPA', loc:'Lake Garda, Italy', region:'europe', types:['europe'],
     desc:"Perched above Lake Garda with extraordinary views, blending Classical Chinese Medicine with Western science in a way rarely found in Europe. Highly reviewed for deep post-illness recovery.",
     tags:['Chinese Medicine + Western','Gut & immunity','Lake Garda views','Personalized programs'],
-    url:'https://lefayresorts.com/lago-di-garda', img:'https://picsum.photos/seed/lefay-lakegarda/600/280', icon:'🇮🇹'
+    url:'https://lefayresorts.com/lago-di-garda', img:'https://lagodigarda.lefayresorts.com/wp-content/uploads/2021/03/resort-1-high-new.jpg', icon:'🇮🇹'
   },
   {
     id:'alpine', name:'Alpine Refuge Retreat', loc:'Austrian Alps', region:'europe', types:['europe','cancer-only','crc'],
@@ -244,12 +259,12 @@ var retreats = [
     desc:"The premier residential cancer retreat in the USA — operating since 1986 with 225+ retreats. The psychotherapy model directly addresses body image grief, sexual health changes, and the emotional reality of altered bodies — concerns specific to colorectal survivors. Peer groups allow frank discussion of bowel function and physical change in a safe, held environment.",
     tags:['Cancer survivors only','Psychotherapy-led','Body image therapy','Yoga & meditation','Pacific cliffs','Since 1986'],
     crcTags:['Body image grief work','Peer support for bowel/sexual changes','Psychotherapy for altered body'],
-    url:'https://cancerhelpprogram.org', img:'https://picsum.photos/seed/commonweal-pacific/600/280', icon:'🌊'
+    url:'https://cancerhelpprogram.org', img:'https://i0.wp.com/cancerhelpprogram.org/wp-content/uploads/2019/07/PH-Frontroom.jpg?zoom=2&resize=495%2C400&ssl=1', icon:'🌊'
   },
   {
     id:'smithcenter', name:'Smith Center for Healing and the Arts', loc:'Washington, DC', region:'usa', types:['namerica','cancer-only','crc'],
     isCancerOnly:true, isCRC:true,
-    desc:"The East Coast sibling of Commonweal, offering week-long, weekend, and day-long retreats for cancer survivors and caregivers. Includes body image therapy, psychosocial counseling, and a safe peer environment for discussing physical changes — including those specific to colorectal cancer. Generous scholarships available.",
+    desc:"The East Coast sibling of Commonweal, offering weeklong, weekend, and day-long retreats for cancer survivors and caregivers. Note: residential retreats are currently on hold during a program assessment — email retreats@smithcenter.org to be notified when they resume. Ongoing classes, yoga, nutrition, and support groups continue at their U Street DC center.",
     tags:['Cancer survivors only','Week & weekend options','Body image therapy','Scholarships available','Commonweal-inspired'],
     crcTags:['Body image counseling','Psychosocial peer support','Scholarships available'],
     url:'https://smithcenter.org', img:'https://picsum.photos/seed/smithcenter-dc/600/280', icon:'🎨'
@@ -259,7 +274,7 @@ var retreats = [
     isCancerOnly:true,
     desc:"Canada's most respected post-cancer retreat. Week-long residential retreats for people irrevocably changed by cancer, plus ongoing community programs throughout the year.",
     tags:['Cancer survivors only','Week-long residential','Ongoing community',"Canada's premier",'Integrative healing'],
-    url:'https://callanish.org', img:'https://picsum.photos/seed/callanish-vancouver/600/280', icon:'🍁'
+    url:'https://callanish.org', img:'https://images.squarespace-cdn.com/content/v1/5470f207e4b046f90d09f186/1423467806320-96T8O7KW6RTOI285Y2PJ/image-asset.jpeg?format=2500w', icon:'🍁'
   },
   {
     id:'canyonranch', name:'Canyon Ranch', loc:'Tucson, AZ and Lenox, MA', region:'usa', types:['namerica','crc'],
@@ -267,38 +282,38 @@ var retreats = [
     desc:"America's gold-standard integrative wellness resort, operating for 40+ years. Medical doctors, nutritionists, and mental health practitioners all on staff. Confirmed sexual health counseling program available, behavioral therapy, and nutritional counseling for altered digestive systems — making it unusually equipped for colorectal survivor needs among general wellness resorts.",
     tags:['Medical staff on-site','Integrative wellness','Nutrition counseling','Mind-body programs','40+ year track record'],
     crcTags:['Sexual health counseling','Behavioral therapy','Nutritional rehab'],
-    url:'https://canyonranch.com', img:'https://picsum.photos/seed/canyonranch-desert/600/280', icon:'🌵'
+    url:'https://canyonranch.com', img:'https://assets.canyonranch.com/system/uploads/fae/image/asset/31831/lg_Web_Page_Intro_Tile-woman-hiking-canyon-ranch-desert-1500X1000_1_.jpg', icon:'🌵'
   },
   {
     id:'miraval', name:'Miraval Arizona', loc:'Tucson, Arizona', region:'usa', types:['namerica'],
     desc:"Award-winning mindfulness and wellness resort in the Sonoran Desert. Emphasizes emotional healing, stress recovery, equine therapy, and mind-body work — popular with people navigating major life transitions including illness recovery.",
     tags:['Mindfulness-based','Equine therapy','Emotional healing','Desert setting','Stress recovery'],
-    url:'https://miravalresorts.com', img:'https://picsum.photos/seed/miraval-sonoran/600/280', icon:'🌄'
+    url:'https://miravalresorts.com', img:'https://www.miravalresorts.com/wp-content/uploads/2023/04/4BR-Villa.jpg', icon:'🌄'
   },
   {
     id:'sedona', name:'Sedona Wellness Retreat', loc:'Sedona, Arizona', region:'usa', types:['namerica'],
     desc:"One of the only residential retreats in the USA offering medically supervised Gerson Therapy — an intensive nutritional detox protocol with decades of use among cancer recovery patients. Personalized programs with doctors on-site.",
     tags:['Gerson Therapy','Medical supervision','Organic juicing','Cancer recovery focus','Doctors on-site'],
-    url:'https://sedonawellnessretreat.com', img:'https://picsum.photos/seed/sedona-redrock/600/280', icon:'🔮'
+    url:'https://sedonawellnessretreat.com', img:'https://sedonawellnessretreat.com/wp-content/uploads/2019/03/Lodge-Outdoor-Pics19-1500x430.jpg', icon:'🔮'
   },
   {
     id:'kripalu', name:'Kripalu Center for Yoga & Health', loc:'Stockbridge, Massachusetts', region:'usa', types:['namerica'],
     desc:"The largest yoga and health retreat center in North America, nestled in the Berkshires. Offers regular programs on healing after illness, mind-body medicine, and nutrition. Affordable, non-luxury, and deeply nourishing.",
     tags:['Yoga & meditation','Mind-body programs','Nutrition workshops','Affordable','Berkshires setting'],
-    url:'https://kripalu.org', img:'https://picsum.photos/seed/kripalu-berkshires/600/280', icon:'🧘'
+    url:'https://kripalu.org', img:'https://kripalu.org/sites/default/files/styles/wide_md/public/2025-09/Kripalu%20outside%20overhead%20grounds-min.jpeg?itok=KTNVDzNR', icon:'🧘'
   },
   {
     id:'esalen', name:'Esalen Institute', loc:'Big Sur, California', region:'usa', types:['namerica'],
     desc:"The legendary human potential center on the cliffs of Big Sur, founded in 1962. Offers workshops on grief, illness, life purpose, and somatic healing led by world-class teachers. Scholarships available.",
     tags:['Human potential','Somatic healing','Life purpose workshops','Iconic cliffside','Scholarships available'],
-    url:'https://esalen.org', img:'https://picsum.photos/seed/esalen-bigsur/600/280', icon:'🌅'
+    url:'https://esalen.org', img:'https://cdn.prod.website-files.com/602d8561ae2fe611c947c905/698a52e67c64dbe0a7a1aa55_2000s-Find-Your-Potential-1200-revised-0226.png', icon:'🌅'
   },
   {
     id:'harmonyhill', name:'Harmony Hill', loc:'Union, Washington', region:'usa', types:['namerica','free'],
     isFree:true,
     desc:"Free 3-day retreat on Hood Canal open to anyone with any cancer and their companion. Yoga, meditation, art, poetry, and group sharing in a serene Pacific Northwest forest setting.",
     tags:['Free to attend','All cancer types','Companion welcome','Yoga & meditation','Group sharing'],
-    url:'https://harmonyhill.org', img:'https://picsum.photos/seed/harmonyhill-pnw/600/280', icon:'🌲'
+    url:'https://harmonyhill.org', img:'https://i0.wp.com/www.harmonyhill.org/wp-content/uploads/2024/03/1-Title.png?resize=930%2C523&ssl=1', icon:'🌲'
   },
   {
     id:'mending', name:'Mending in the Mountains', loc:'Big Sky, Montana', region:'usa', types:['namerica','free'],
@@ -308,32 +323,18 @@ var retreats = [
     url:'https://mendinginthemountains.org', img:'https://picsum.photos/seed/mending-montana/600/280', icon:'⛰'
   },
   {
-    id:'reelrecovery', name:'Reel Recovery', loc:'Multiple USA locations', region:'usa', types:['namerica','free'],
-    isFree:true,
-    desc:"Free 2.5-day fly fishing retreats for men at any stage of cancer treatment or remission. All meals, lodging, and gear provided. A proven formula for deep camaraderie and emotional reset in beautiful natural settings.",
-    tags:['Free to attend','Men with any cancer','Fly fishing','Peer support','All meals & gear'],
-    url:'https://reelrecovery.org', img:'https://picsum.photos/seed/reel-recovery-river/600/280', icon:'🎣'
-  },
-  {
     id:'livebyliving', name:'Live By Living', loc:'Multiple USA locations', region:'usa', types:['namerica','free'],
     isFree:true,
     desc:"Free nature-centric retreats for adult cancer survivors and caregivers nationwide. Activities customized to all physical abilities — hikes, nature walks, and snowshoe outings designed to reconnect with life after cancer.",
     tags:['Free to attend','Nature-based','Caregiver-friendly','All abilities welcome','Nationwide'],
-    url:'https://livebyliving.org', img:'https://picsum.photos/seed/livebyliving-trail/600/280', icon:'🥾'
+    url:'https://livebyliving.org', img:'https://livebyliving.org/wp-content/uploads/2024/02/Julie-Wrend3.jpg', icon:'🥾'
   },
   {
     id:'blantonhouse', name:'Cancer Retreat Centers (Blanton House)', loc:'Richmond, Virginia', region:'usa', types:['namerica','free'],
     isFree:true,
     desc:"A beautifully renovated historic mansion in Richmond's largest city park. Free evidence-based services for cancer survivors at all stages — yoga, peer programs, and integrative wellness. Expanding to new cities.",
     tags:['Free to attend','Evidence-based','All stages welcome','Ongoing programs','Expanding nationally'],
-    url:'https://cancerretreatcenters.org', img:'https://picsum.photos/seed/blantonhouse-richmond/600/280', icon:'🏛'
-  },
-  {
-    id:'respite', name:'Respite Retreats', loc:'USA — multiple sites', region:'usa', types:['namerica','free'],
-    isFree:true,
-    desc:"Holistic day and weekend retreats for cancer patients, caregivers, and families. Focuses on refueling the spirit, rediscovering joy, and deeper family connection — healing together, not alone.",
-    tags:['Free to attend','Families welcome','Caregivers included','Holistic activities','Spiritual focus'],
-    url:'https://respiteretreats.org', img:'https://picsum.photos/seed/respite-garden/600/280', icon:'🌻'
+    url:'https://cancerretreatcenters.org', img:'https://cancerretreatcenters.org/wp-content/uploads/2024/08/Blanton-House-Cancer-Retreat-Center-36.jpg', icon:'🏛'
   }
 ];
 
@@ -389,8 +390,10 @@ function render(f) {
     card.className = 'card';
     card.innerHTML =
       '<div class="card-img-wrap">' +
-        '<img class="card-img" src="' + r.img + '" alt="' + r.name + '" loading="lazy" onerror="imgFallback(this,\'' + r.region + '\')">' +
-        '<div class="card-img-fallback" style="display:none;">' + r.icon + '</div>' +
+        '<a href="' + r.url + '" target="_blank" title="Visit ' + r.name + ' website" style="display:block;height:100%;cursor:pointer;">' +
+          '<img class="card-img" src="' + r.img + '" alt="' + r.name + '" loading="lazy" onerror="imgFallback(this,\'' + r.region + '\')">' +
+          '<div class="card-img-fallback" style="display:none;">' + r.icon + '</div>' +
+        '</a>' +
         '<button class="fav-btn ' + (isFav ? 'active' : '') + '" onclick="toggleFav(\'' + r.id + '\',this)" title="Save retreat">' + (isFav ? '❤️' : '🤍') + '</button>' +
       '</div>' +
       '<div class="card-body">' +
